@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 // import ExportPage from './ExportPage'
 // import { useNavigate } from 'react-router-dom'
-import { PDFViewer } from '@react-pdf/renderer';
+import { PDFViewer,PDFDownloadLink } from '@react-pdf/renderer';
 import PdfDoc from '../components/PdfDoc';
 import NavBar from '../components/NavBar';
 import { toast } from "react-toastify"
@@ -30,7 +30,7 @@ export default function HomePage() {
     // useEffect(() => {
     //     console.log(data)
     // }, [data])
-    useEffect(()=>{
+    useEffect(() => {
         toast.info('Initial requests may experience slight delays due to our free tier deployment.', {
             position: "top-center",
             autoClose: 7500,
@@ -40,8 +40,8 @@ export default function HomePage() {
             draggable: true,
             progress: undefined,
             theme: "dark",
-            });
-    },[])
+        });
+    }, [])
 
     return (
         <div className='min-h-screen bg-black text-white pb-10'>
@@ -66,7 +66,18 @@ export default function HomePage() {
                             <span class="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">OR</span>
                         </div>
                         <button onClick={tryDemo} className="block text-white mx-auto  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Try Demo</button>
-                        {show && <div><PDFViewer className='w-full h-screen max-w-screen-lg mx-auto my-10'><PdfDoc conversation={data.conversation} title={data.title} /></PDFViewer></div>}
+                        {show &&
+                            (<div className='mx-auto text-center'>
+                                <PDFViewer className='w-full h-screen max-w-screen-lg mx-auto my-10'>
+                                    <PdfDoc conversation={data.conversation} title={data.title} />
+                                </PDFViewer>
+                                <PDFDownloadLink document={<PdfDoc conversation={data.conversation} title={data.title} />} fileName={`${data.title}_exportGPT.pdf`} class="mx-auto inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+                                    <span class="px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                                        Download PDF
+                                    </span>
+                                </PDFDownloadLink >
+                            </div>
+                            )}
                     </div>)
                 }
             </div>
