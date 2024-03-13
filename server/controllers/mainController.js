@@ -29,7 +29,7 @@ const getConversation = async (req, res) => {
     }
 }
 
-const test=()=>{
+const test=(req,res)=>{
     res.json({"working":"hello world"})
 }
 
