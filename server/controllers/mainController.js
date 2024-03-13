@@ -30,7 +30,7 @@ const getConversation = async (req, res) => {
 }
 
 const test=()=>{
-    res.send("working")
+    res.send({"working":"hello world"})
 }
 
 module.exports = {
