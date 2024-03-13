@@ -29,6 +29,11 @@ const getConversation = async (req, res) => {
     }
 }
 
+const test=()=>{
+    res.send("working")
+}
+
 module.exports = {
-    getConversation
+    getConversation,
+    test
 }
