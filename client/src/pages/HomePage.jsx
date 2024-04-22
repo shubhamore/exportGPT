@@ -22,7 +22,7 @@ export default function HomePage() {
         // navigate('/export')
     }
     const tryDemo = async () => {
-        getConversation('https://chat.openai.com/share/3dda1578-6388-4304-9070-f09054f30621')
+        getConversation('https://chat.openai.com/share/4e7e4604-3e42-4b95-9ca0-b88b359729d6')
     }
     // useEffect(() => {
     //     console.log(url)
