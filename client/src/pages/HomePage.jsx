@@ -43,36 +43,44 @@ export default function HomePage() {
         });
     }, [])
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        getConversation(url)
+        console.log('handleSubmit function called')
+    }
+
     return (
         <div className='min-h-screen bg-black text-white pb-10'>
             <NavBar />
+
             <div className='container mx-auto'>
                 {loading ? <div className='text-5xl m-auto text-center my-20'>Loading...</div> :
                     (<div>
                         <h1 className='font-bold text-4xl text-center py-11'>Convert your ChatGPT conversation to a PDF</h1>
-                        <form className='mx-auto max-w-screen-lg' onSubmit={(e) => { e.preventDefault(); getConversation(url) }}>
+                        <form className='mx-auto max-w-screen-lg' onSubmit={handleSubmit}>
                             <div className="relative">
                                 <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                     <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                     </svg>
                                 </div>
                                 <input type="url" value={url} onChange={(e) => setUrl(e.target.value)} className="block w-full p-4 ps-10 text-sm border  rounded-lg  bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Enter Conversation URL" required />
                                 <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                             </div>
                         </form>
-                        <div class="inline-flex items-center justify-center w-full">
-                            <hr class="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
-                            <span class="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">OR</span>
+                        <div className="inline-flex items-center justify-center w-full">
+                            <hr className="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+                            <span className="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">OR</span>
                         </div>
                         <button onClick={tryDemo} className="block text-white mx-auto  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Try Demo</button>
+                        {console.log("rendering")}
                         {show &&
                             (<div className='mx-auto text-center'>
                                 <PDFViewer className='w-full h-screen max-w-screen-lg mx-auto my-10'>
                                     <PdfDoc conversation={data.conversation} title={data.title} />
                                 </PDFViewer>
-                                <PDFDownloadLink document={<PdfDoc conversation={data.conversation} title={data.title} />} fileName={`${data.title}_exportGPT.pdf`} class="mx-auto inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
-                                    <span class="px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                                <PDFDownloadLink document={<PdfDoc conversation={data.conversation} title={data.title} />} fileName={`${data.title}_exportGPT.pdf`} className="mx-auto inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+                                    <span className="px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                                         Download PDF
                                     </span>
                                 </PDFDownloadLink >

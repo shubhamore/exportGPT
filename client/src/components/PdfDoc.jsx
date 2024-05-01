@@ -69,8 +69,9 @@ export default function PdfDoc({ conversation,title }) {
                             <div key={index} style={styles.text}>
                                 {/* <Text>Role : {conv.message.author.role}</Text>
                                 <br /> */}
-                                <Text>{conv.message.content.parts[0]}</Text>
-                                <hr />
+                                {/* {console.log(conv)} */}
+                                {conv&&conv.message&&conv.message.content&&conv.message.content.parts&&<><Text>{conv.message.content.parts[0]}</Text>
+                                <hr /></>}
                             </div>
                         )
                     })}
