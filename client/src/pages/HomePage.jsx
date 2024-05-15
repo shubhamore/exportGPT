@@ -31,7 +31,7 @@ export default function HomePage() {
     //     console.log(data)
     // }, [data])
     useEffect(() => {
-        toast.info('Initial requests may experience slight delays due to our free tier deployment.', {
+        toast.info('This project is no longer functional following the recent OpenAI update.', {
             position: "top-center",
             autoClose: 7500,
             hideProgressBar: false,
